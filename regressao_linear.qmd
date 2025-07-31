@@ -1,0 +1,304 @@
+---
+title: "Regressão Linear"
+author: Lucas Magalhães Ast
+format: html
+toc: true
+---
+
+# Regressão Linear: Simples e Múltipla
+
+## O que é Regressão Linear?
+
+A regressão linear é uma técnica estatística usada para modelar a **relação entre variáveis**. O objetivo é **prever ou explicar** uma variável dependente $y$ com base em uma ou mais variáveis independentes $x$.
+
+---
+
+## Regressão Linear Simples
+
+### Definição
+
+Modela a relação entre **duas variáveis**:  
+- Uma variável dependente $y$  
+- Uma variável independente $x$
+
+---
+
+### Fórmula
+
+$$
+\hat{y} = \beta_0 + \beta_1 x
+$$
+
+- $\hat{y}$: valor previsto  
+- $\beta_0$: intercepto  
+- $\beta_1$: coeficiente angular  
+- $x$: variável explicativa  
+
+---
+
+## O que é o Coeficiente Angular ($\beta_1$)?
+
+É o número que indica **quanto a variável $y$ varia** quando $x$ aumenta em uma unidade.
+
+- Se $\beta_1 = 3$, cada aumento de 1 unidade em $x$ causa aumento de 3 unidades em $y$.
+- Se $\beta_1 < 0$, a relação é decrescente.
+
+---
+
+## Exemplo de Regressão Linear Simples
+
+Suponha a função:
+
+$$
+y = 2 + 3x
+$$
+
+| x | y |
+|---|---|
+| 0 | 2 |
+| 1 | 5 |
+| 2 | 8 |
+
+- Intercepto $\beta_0 = 2$
+- Inclinação $\beta_1 = 3$
+
+---
+
+## Cálculo dos Coeficientes
+
+O método dos mínimos quadrados calcula os coeficientes que **minimizam a soma dos quadrados dos erros**.
+
+Fórmula fo coeficiente angular:
+$$
+\beta_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}
+$$
+
+Fórmula do intercepto:
+$$
+\beta_0 = \bar{y} - \beta_1 \bar{x}
+$$
+
+---
+
+## Exemplo Prático em Python (Regressão Linear Simples)
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+
+# Dados simulados
+x = np.array([1, 2, 3, 4, 5]).reshape(-1, 1)
+y = np.array([2, 4, 5, 4, 5])
+
+# Criando e ajustando o modelo
+modelo = LinearRegression()
+modelo.fit(x, y)
+
+# Coeficientes
+print("Intercepto (b0):", modelo.intercept_)
+print("Coeficiente angular (b1):", modelo.coef_[0])
+
+# Previsões
+y_pred = modelo.predict(x)
+
+# Gráfico
+plt.scatter(x, y, color='blue', label='Dados reais')
+plt.plot(x, y_pred, color='red', label='Regressão linear')
+plt.title("Regressão Linear Simples")
+plt.xlabel("x")
+plt.ylabel("y")
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+## Regressão Linear Múltipla
+
+### Definição
+
+Estende a regressão simples para incluir **mais de uma variável explicativa**.
+
+### Fórmula
+
+$$
+\hat{y} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_n x_n
+$$
+
+- Cada $\beta_i$ representa o **efeito isolado de $x_i$** sobre $y$, mantendo os outros fixos.
+
+### Exemplo:
+Previsão do preço de um carro com base em:
+- $x_1$: quilometragem
+- $x_2$: ano
+- $x_3$: tipo de combustível
+
+$$
+\hat{y} = 50000 - 0.05x_1 + 300x_2 + 1000x_3
+$$
+
+---
+
+## Exemplo Prático em Python (Regressão Linear Múltipla)
+```{python}
+import numpy as np
+from sklearn.linear_model import LinearRegression
+
+# Variáveis explicativas (2 variáveis: x1 e x2)
+X = np.array([
+    [1, 2],
+    [2, 1],
+    [3, 3],
+    [4, 5],
+    [5, 4]
+])
+
+# Variável resposta
+y = np.array([5, 6, 9, 11, 10])
+
+# Ajustando o modelo
+modelo = LinearRegression()
+modelo.fit(X, y)
+
+# Resultados
+print("Intercepto (b0):", modelo.intercept_)
+print("Coeficientes (b1, b2):", modelo.coef_)
+
+# Previsões
+y_pred = modelo.predict(X)
+print("Valores previstos:", y_pred)
+```
+
+---
+## nterpretação e Limitações Preditivas da Regressão Linear
+
+A regressão linear é frequentemente usada como modelo preditivo, mas é importante entender **suas reais capacidades e limitações**.
+
+---
+
+### O que a Regressão Linear faz bem?
+
+A regressão linear **capta a tendência média** de uma variável resposta $y$ em função de uma ou mais variáveis explicativas $x$.
+
+Ela é excelente para:
+
+- **Modelar relações lineares simples**
+- **Observar comportamentos médios**
+- **Interpretar coeficientes** (quanto uma variável impacta a outra, em média)
+- **Avaliação descritiva e inferencial**
+
+---
+
+### Mas e como modelo preditivo?
+
+A regressão linear **não é robusta** como modelo preditivo em situações reais com dados complexos. Ela assume uma série de condições ideais:
+
+1. Linearidade da relação entre $x$ e $y$
+2. Homocedasticidade (variância constante dos resíduos)
+3. Normalidade dos erros
+4. Ausência de multicolinearidade (na regressão múltipla)
+
+Quando essas condições **não são atendidas**, a capacidade preditiva **cai drasticamente**.
+
+---
+
+### Forma correta de interpretar
+
+- Evite dizer que:  
+  > “Regressão linear é um modelo sólido de previsão.”
+
+- Prefira dizer:  
+  > “A regressão linear é uma ferramenta útil para **capturar a tendência média** de uma variável resposta com base em variáveis explicativas, **mas possui limitações como modelo preditivo**, especialmente em cenários não-lineares ou com alta variabilidade.”
+
+---
+
+### Quando usar regressão linear?
+
+Use regressão linear quando seu objetivo for:
+
+- **Entender uma relação média** entre variáveis
+- **Testar hipóteses estatísticas**
+- **Explicar variações médias** em $y$
+- **Prever dentro de um intervalo bem comportado**, onde os dados sigam aproximadamente uma tendência linear
+
+---
+
+### Modelos alternativos para previsão robusta
+
+Se seu objetivo é previsão com alta acurácia, considere modelos mais sofisticados, como:
+
+- Regressão polinomial
+- Árvores de decisão e Random Forest
+- Regressão Lasso/Ridge
+- Modelos de séries temporais (ARIMA, Prophet)
+- Redes neurais (deep learning)
+
+---
+
+### 💡 Conclusão
+
+> A regressão linear é uma excelente ferramenta para **modelar tendências** e **compreender relações** entre variáveis, mas deve ser usada com cautela como modelo preditivo em contextos reais complexos.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## Suposições da Regressão Linear
+
+1. **Linearidade**: relação entre $x$ e $y$ é linear
+2. **Independência dos erros**
+3. **Homoscedasticidade**: variância constante dos resíduos
+4. **Normalidade dos resíduos**
+
+---
+
+## Métricas para avaliar o modelo
+
+- **R² (coeficiente de determinação)**: quão bem o modelo explica os dados (varia de 0 a 1)
+- **Erro padrão dos coeficientes**
+- **p-valor**: testa se o coeficiente é estatisticamente significativo
+- **Resíduos**: diferença entre valores reais e previstos
+
+---
+
+## Aplicações
+
+- Previsão de preços (imóveis, ações, produtos)
+- Estimativa de demanda
+- Relação entre características (salário vs educação, consumo vs renda)
+- Modelos econômicos, biomédicos, engenharias e mais
+
+---
+
+## Resumo Visual
+
+| Tipo de Regressão | Fórmula | Quando Usar |
+|-------------------|---------|-------------|
+| Linear Simples | $y = \beta_0 + \beta_1 x$ | Uma variável explicativa |
+| Linear Múltipla | $y = \beta_0 + \beta_1 x_1 + \dots + \beta_n x_n$ | Múltiplas variáveis explicativas |
+
+---
+
+## Limitações
+
+- Relação deve ser aproximadamente linear
+- Outliers podem distorcer o modelo
+- Não implica causalidade (correlação ≠ causa)
+
+---
