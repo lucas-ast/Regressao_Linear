@@ -69,7 +69,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="regressao_linear_files/libs/quarto-html/quarto-syntax-highlighting-e1a5c8363afafaef2c763b6775fbf3ca.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="regressao_linear_files/libs/bootstrap/bootstrap.min.js"></script>
 <link href="regressao_linear_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="regressao_linear_files/libs/bootstrap/bootstrap-9f11b411ed8a9ed7388199b20b46d2e7.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="regressao_linear_files/libs/bootstrap/bootstrap-bb462d781dde1847d9e3ccf7736099dd.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -121,15 +121,34 @@ window.Quarto = {
   </ul></li>
   <li><a href="#o-que-é-o-coeficiente-angular-beta_1" id="toc-o-que-é-o-coeficiente-angular-beta_1" class="nav-link" data-scroll-target="#o-que-é-o-coeficiente-angular-beta_1">O que é o Coeficiente Angular (<span class="math inline">\(\beta_1\)</span>)?</a></li>
   <li><a href="#exemplo-de-regressão-linear-simples" id="toc-exemplo-de-regressão-linear-simples" class="nav-link" data-scroll-target="#exemplo-de-regressão-linear-simples">Exemplo de Regressão Linear Simples</a></li>
-  <li><a href="#cálculo-dos-coeficientes" id="toc-cálculo-dos-coeficientes" class="nav-link" data-scroll-target="#cálculo-dos-coeficientes">Cálculo dos Coeficientes</a></li>
+  <li><a href="#cálculo-dos-coeficientes" id="toc-cálculo-dos-coeficientes" class="nav-link" data-scroll-target="#cálculo-dos-coeficientes">Cálculo dos Coeficientes</a>
+  <ul class="collapse">
+  <li><a href="#passos-do-mqo" id="toc-passos-do-mqo" class="nav-link" data-scroll-target="#passos-do-mqo">Passos do MQO</a></li>
+  <li><a href="#resultado" id="toc-resultado" class="nav-link" data-scroll-target="#resultado">Resultado:</a></li>
+  </ul></li>
   <li><a href="#exemplo-prático-em-python-regressão-linear-simples" id="toc-exemplo-prático-em-python-regressão-linear-simples" class="nav-link" data-scroll-target="#exemplo-prático-em-python-regressão-linear-simples">Exemplo Prático em Python (Regressão Linear Simples)</a></li>
   <li><a href="#regressão-linear-múltipla" id="toc-regressão-linear-múltipla" class="nav-link" data-scroll-target="#regressão-linear-múltipla">Regressão Linear Múltipla</a>
   <ul class="collapse">
   <li><a href="#definição-1" id="toc-definição-1" class="nav-link" data-scroll-target="#definição-1">Definição</a></li>
   <li><a href="#fórmula-1" id="toc-fórmula-1" class="nav-link" data-scroll-target="#fórmula-1">Fórmula</a></li>
   <li><a href="#exemplo" id="toc-exemplo" class="nav-link" data-scroll-target="#exemplo">Exemplo:</a></li>
+  <li><a href="#forma-matricial-do-mqo" id="toc-forma-matricial-do-mqo" class="nav-link" data-scroll-target="#forma-matricial-do-mqo">Forma matricial do MQO</a></li>
+  <li><a href="#suponha-os-seguintes-dados" id="toc-suponha-os-seguintes-dados" class="nav-link" data-scroll-target="#suponha-os-seguintes-dados">Suponha os seguintes dados:</a></li>
+  <li><a href="#montando-as-matrizes" id="toc-montando-as-matrizes" class="nav-link" data-scroll-target="#montando-as-matrizes">Montando as matrizes</a></li>
+  <li><a href="#aplicando-o-mqo" id="toc-aplicando-o-mqo" class="nav-link" data-scroll-target="#aplicando-o-mqo">Aplicando o MQO</a></li>
+  <li><a href="#resultado-1" id="toc-resultado-1" class="nav-link" data-scroll-target="#resultado-1">Resultado:</a></li>
+  <li><a href="#observação" id="toc-observação" class="nav-link" data-scroll-target="#observação">💡 Observação:</a></li>
   </ul></li>
   <li><a href="#exemplo-prático-em-python-regressão-linear-múltipla" id="toc-exemplo-prático-em-python-regressão-linear-múltipla" class="nav-link" data-scroll-target="#exemplo-prático-em-python-regressão-linear-múltipla">Exemplo Prático em Python (Regressão Linear Múltipla)</a></li>
+  <li><a href="#interpretação-e-limitações-preditivas-da-regressão-linear" id="toc-interpretação-e-limitações-preditivas-da-regressão-linear" class="nav-link" data-scroll-target="#interpretação-e-limitações-preditivas-da-regressão-linear">Interpretação e Limitações Preditivas da Regressão Linear</a>
+  <ul class="collapse">
+  <li><a href="#o-que-a-regressão-linear-faz-bem" id="toc-o-que-a-regressão-linear-faz-bem" class="nav-link" data-scroll-target="#o-que-a-regressão-linear-faz-bem">O que a Regressão Linear faz bem?</a></li>
+  <li><a href="#como-modelo-preditivo" id="toc-como-modelo-preditivo" class="nav-link" data-scroll-target="#como-modelo-preditivo">Como modelo preditivo?</a></li>
+  <li><a href="#forma-correta-de-interpretar" id="toc-forma-correta-de-interpretar" class="nav-link" data-scroll-target="#forma-correta-de-interpretar">Forma correta de interpretar</a></li>
+  <li><a href="#quando-usar-regressão-linear" id="toc-quando-usar-regressão-linear" class="nav-link" data-scroll-target="#quando-usar-regressão-linear">Quando usar regressão linear?</a></li>
+  <li><a href="#modelos-alternativos-para-previsão-robusta" id="toc-modelos-alternativos-para-previsão-robusta" class="nav-link" data-scroll-target="#modelos-alternativos-para-previsão-robusta">Modelos alternativos para previsão robusta</a></li>
+  <li><a href="#conclusão" id="toc-conclusão" class="nav-link" data-scroll-target="#conclusão">Conclusão</a></li>
+  </ul></li>
   <li><a href="#suposições-da-regressão-linear" id="toc-suposições-da-regressão-linear" class="nav-link" data-scroll-target="#suposições-da-regressão-linear">Suposições da Regressão Linear</a></li>
   <li><a href="#métricas-para-avaliar-o-modelo" id="toc-métricas-para-avaliar-o-modelo" class="nav-link" data-scroll-target="#métricas-para-avaliar-o-modelo">Métricas para avaliar o modelo</a></li>
   <li><a href="#aplicações" id="toc-aplicações" class="nav-link" data-scroll-target="#aplicações">Aplicações</a></li>
@@ -238,9 +257,8 @@ y = 2 + 3x
 </table>
 <ul>
 <li>Intercepto <span class="math inline">\(\beta_0 = 2\)</span></li>
-<li>Inclinação <span class="math inline">\(\beta_1 = 3\)</span></li>
+<li><h2 id="inclinação-beta_1-3" class="anchored">Inclinação <span class="math inline">\(\beta_1 = 3\)</span></h2></li>
 </ul>
-<hr>
 </section>
 <section id="cálculo-dos-coeficientes" class="level2">
 <h2 class="anchored" data-anchor-id="cálculo-dos-coeficientes">Cálculo dos Coeficientes</h2>
@@ -251,11 +269,100 @@ y = 2 + 3x
 <p>Fórmula do intercepto: <span class="math display">\[
 \beta_0 = \bar{y} - \beta_1 \bar{x}
 \]</span></p>
+<section id="passos-do-mqo" class="level3">
+<h3 class="anchored" data-anchor-id="passos-do-mqo">Passos do MQO</h3>
+<p>Queremos encontrar os coeficientes <span class="math inline">\(\beta_0\)</span> e <span class="math inline">\(\beta_1\)</span> que melhor ajustam o modelo:</p>
+<p><span class="math display">\[
+\hat{y} = \beta_0 + \beta_1 x
+\]</span></p>
+<section id="calcular-as-médias" class="level4">
+<h4 class="anchored" data-anchor-id="calcular-as-médias">Calcular as médias</h4>
+<p><span class="math display">\[
+\bar{x} = \frac{0 + 1 + 2}{3} = 1 \\
+\bar{y} = \frac{2 + 5 + 8}{3} = 5
+\]</span></p>
+</section>
+<section id="calcular-o-coeficiente-angular-beta_1" class="level4">
+<h4 class="anchored" data-anchor-id="calcular-o-coeficiente-angular-beta_1">Calcular o coeficiente angular (<span class="math inline">\(\beta_1\)</span>)</h4>
+<p><span class="math display">\[
+\beta_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}
+\]</span></p>
+<p>Montando a tabela:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 5%">
+<col style="width: 17%">
+<col style="width: 17%">
+<col style="width: 33%">
+<col style="width: 20%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><span class="math inline">\(x_i\)</span></th>
+<th><span class="math inline">\(y_i\)</span></th>
+<th><span class="math inline">\(x_i - \bar{x}\)</span></th>
+<th><span class="math inline">\(y_i - \bar{y}\)</span></th>
+<th><span class="math inline">\((x_i - \bar{x})(y_i - \bar{y})\)</span></th>
+<th><span class="math inline">\((x_i - \bar{x})^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>2</td>
+<td>-1</td>
+<td>-3</td>
+<td>3</td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>1</td>
+<td>5</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr class="odd">
+<td>2</td>
+<td>8</td>
+<td>1</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+</tr>
+</tbody>
+</table>
+<p>Somando:</p>
+<p><span class="math display">\[
+\beta_1 = \frac{3 + 0 + 3}{1 + 0 + 1} = \frac{6}{2} = 3
+\]</span></p>
+</section>
+<section id="calcular-o-intercepto-beta_0" class="level4">
+<h4 class="anchored" data-anchor-id="calcular-o-intercepto-beta_0">Calcular o intercepto (<span class="math inline">\(\beta_0\)</span>)</h4>
+<p><span class="math display">\[
+\beta_0 = \bar{y} - \beta_1 \bar{x} = 5 - 3 \cdot 1 = 2
+\]</span></p>
 <hr>
+</section>
+</section>
+<section id="resultado" class="level3">
+<h3 class="anchored" data-anchor-id="resultado">Resultado:</h3>
+<p>A equação estimada é:</p>
+<p><span class="math display">\[
+\hat{y} = 2 + 3x
+\]</span></p>
+<ul>
+<li>Intercepto <span class="math inline">\(\beta_0 = 2\)</span></li>
+<li>Inclinação <span class="math inline">\(\beta_1 = 3\)</span></li>
+</ul>
+<hr>
+</section>
 </section>
 <section id="exemplo-prático-em-python-regressão-linear-simples" class="level2">
 <h2 class="anchored" data-anchor-id="exemplo-prático-em-python-regressão-linear-simples">Exemplo Prático em Python (Regressão Linear Simples)</h2>
-<div id="6622f8e6" class="cell" data-execution_count="1">
+<div id="529821e9" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
@@ -291,7 +398,7 @@ Coeficiente angular (b1): 0.6</code></pre>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="regressao_linear_files/figure-html/cell-2-output-2.png" width="589" height="450" class="figure-img"></p>
+<p><img src="regressao_linear_files/figure-html/cell-2-output-2.png" class="img-fluid figure-img"></p>
 </figure>
 </div>
 </div>
@@ -318,12 +425,115 @@ Coeficiente angular (b1): 0.6</code></pre>
 <p><span class="math display">\[
 \hat{y} = 50000 - 0.05x_1 + 300x_2 + 1000x_3
 \]</span></p>
+</section>
+<section id="forma-matricial-do-mqo" class="level3">
+<h3 class="anchored" data-anchor-id="forma-matricial-do-mqo">Forma matricial do MQO</h3>
+<p>Para múltiplas variáveis, usamos a fórmula matricial:</p>
+<p><span class="math display">\[
+\hat{\beta} = (X^\top X)^{-1} X^\top y
+\]</span></p>
+<p>Onde:</p>
+<ul>
+<li><span class="math inline">\(X\)</span>: matriz de variáveis (com uma coluna de 1s para o intercepto)</li>
+<li><span class="math inline">\(y\)</span>: vetor de respostas</li>
+<li><span class="math inline">\(\hat{\beta}\)</span>: vetor de coeficientes <span class="math inline">\((\beta_0, \beta_1, \beta_2, \beta_3)\)</span></li>
+</ul>
+<hr>
+</section>
+<section id="suponha-os-seguintes-dados" class="level3">
+<h3 class="anchored" data-anchor-id="suponha-os-seguintes-dados">Suponha os seguintes dados:</h3>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(x_1\)</span> (km)</th>
+<th><span class="math inline">\(x_2\)</span> (ano)</th>
+<th><span class="math inline">\(x_3\)</span> (comb.)</th>
+<th><span class="math inline">\(y\)</span> (preço)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>20000</td>
+<td>2020</td>
+<td>0</td>
+<td>56000</td>
+</tr>
+<tr class="even">
+<td>40000</td>
+<td>2019</td>
+<td>1</td>
+<td>55200</td>
+</tr>
+<tr class="odd">
+<td>10000</td>
+<td>2021</td>
+<td>1</td>
+<td>59000</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="montando-as-matrizes" class="level3">
+<h3 class="anchored" data-anchor-id="montando-as-matrizes">Montando as matrizes</h3>
+<p><span class="math display">\[
+X =
+\begin{bmatrix}
+1 &amp; 20000 &amp; 2020 &amp; 0 \\
+1 &amp; 40000 &amp; 2019 &amp; 1 \\
+1 &amp; 10000 &amp; 2021 &amp; 1 \\
+\end{bmatrix},
+\quad
+y =
+\begin{bmatrix}
+56000 \\
+55200 \\
+59000 \\
+\end{bmatrix}
+\]</span></p>
+<hr>
+</section>
+<section id="aplicando-o-mqo" class="level3">
+<h3 class="anchored" data-anchor-id="aplicando-o-mqo">Aplicando o MQO</h3>
+<p>Usamos a fórmula:</p>
+<p><span class="math display">\[
+\hat{\beta} = (X^\top X)^{-1} X^\top y
+\]</span></p>
+<p>O cálculo envolve:</p>
+<ol type="1">
+<li>Multiplicar <span class="math inline">\(X^\top X\)</span></li>
+<li>Inverter <span class="math inline">\((X^\top X)\)</span></li>
+<li>Multiplicar pelo vetor <span class="math inline">\(X^\top y\)</span></li>
+</ol>
+<p>Esse processo gera os coeficientes estimados:</p>
+<p><span class="math display">\[
+\hat{\beta} =
+\begin{bmatrix}
+50000 \\
+-0.05 \\
+300 \\
+1000 \\
+\end{bmatrix}
+\]</span></p>
+<hr>
+</section>
+<section id="resultado-1" class="level3">
+<h3 class="anchored" data-anchor-id="resultado-1">Resultado:</h3>
+<p>A equação estimada da regressão múltipla é:</p>
+<p><span class="math display">\[
+\hat{y} = 50000 - 0.05x_1 + 300x_2 + 1000x_3
+\]</span></p>
+<hr>
+</section>
+<section id="observação" class="level3">
+<h3 class="anchored" data-anchor-id="observação">💡 Observação:</h3>
+<p>Esse modelo diz, por exemplo, que: - Cada quilômetro rodado reduz o valor do carro em R$ 0,05 - Cada ano de fabricação a mais aumenta o valor em R$ 300 - Veículos a álcool valem R$ 1.000 a mais, em média, que os a gasolina (assumindo <span class="math inline">\(x_3 = 1\)</span>)</p>
 <hr>
 </section>
 </section>
 <section id="exemplo-prático-em-python-regressão-linear-múltipla" class="level2">
 <h2 class="anchored" data-anchor-id="exemplo-prático-em-python-regressão-linear-múltipla">Exemplo Prático em Python (Regressão Linear Múltipla)</h2>
-<div id="924ba9bc" class="cell" data-execution_count="2">
+<div id="56ace7d1" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -356,6 +566,74 @@ Coeficientes (b1, b2): [0.83333333 0.83333333]
 Valores previstos: [ 5.7  5.7  8.2 10.7 10.7]</code></pre>
 </div>
 </div>
+<hr>
+</section>
+<section id="interpretação-e-limitações-preditivas-da-regressão-linear" class="level2">
+<h2 class="anchored" data-anchor-id="interpretação-e-limitações-preditivas-da-regressão-linear">Interpretação e Limitações Preditivas da Regressão Linear</h2>
+<p>A regressão linear é frequentemente usada como modelo preditivo, mas é importante entender <strong>suas reais capacidades e limitações</strong>.</p>
+<section id="o-que-a-regressão-linear-faz-bem" class="level3">
+<h3 class="anchored" data-anchor-id="o-que-a-regressão-linear-faz-bem">O que a Regressão Linear faz bem?</h3>
+<p>A regressão linear <strong>capta a tendência média</strong> de uma variável resposta <span class="math inline">\(y\)</span> em função de uma ou mais variáveis explicativas <span class="math inline">\(x\)</span>.</p>
+<p>Ela é excelente para:</p>
+<ul>
+<li><strong>Modelar relações lineares simples</strong></li>
+<li><strong>Observar comportamentos médios</strong></li>
+<li><strong>Interpretar coeficientes</strong> (quanto uma variável impacta a outra, em média)</li>
+<li><strong>Avaliação descritiva e inferencial</strong></li>
+</ul>
+<hr>
+</section>
+<section id="como-modelo-preditivo" class="level3">
+<h3 class="anchored" data-anchor-id="como-modelo-preditivo">Como modelo preditivo?</h3>
+<p>A regressão linear <strong>não é robusta</strong> como modelo preditivo em situações reais com dados complexos. Ela assume uma série de condições ideais:</p>
+<ol type="1">
+<li>Linearidade da relação entre <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span></li>
+<li>Homocedasticidade (variância constante dos resíduos)</li>
+<li>Normalidade dos erros</li>
+<li>Ausência de multicolinearidade (na regressão múltipla)</li>
+</ol>
+<p>Quando essas condições <strong>não são atendidas</strong>, a capacidade preditiva <strong>cai drasticamente</strong>.</p>
+<hr>
+</section>
+<section id="forma-correta-de-interpretar" class="level3">
+<h3 class="anchored" data-anchor-id="forma-correta-de-interpretar">Forma correta de interpretar</h3>
+<ul>
+<li><p>Evite dizer que:<br>
+&gt; “Regressão linear é um modelo sólido de previsão.”</p></li>
+<li><p>Prefira dizer:<br>
+&gt; “A regressão linear é uma ferramenta útil para <strong>capturar a tendência média</strong> de uma variável resposta com base em variáveis explicativas, <strong>mas possui limitações como modelo preditivo</strong>, especialmente em cenários não-lineares ou com alta variabilidade.”</p></li>
+</ul>
+<hr>
+</section>
+<section id="quando-usar-regressão-linear" class="level3">
+<h3 class="anchored" data-anchor-id="quando-usar-regressão-linear">Quando usar regressão linear?</h3>
+<p>Use regressão linear quando seu objetivo for:</p>
+<ul>
+<li><strong>Entender uma relação média</strong> entre variáveis</li>
+<li><strong>Testar hipóteses estatísticas</strong></li>
+<li><strong>Explicar variações médias</strong> em <span class="math inline">\(y\)</span></li>
+<li><strong>Prever dentro de um intervalo bem comportado</strong>, onde os dados sigam aproximadamente uma tendência linear</li>
+</ul>
+<hr>
+</section>
+<section id="modelos-alternativos-para-previsão-robusta" class="level3">
+<h3 class="anchored" data-anchor-id="modelos-alternativos-para-previsão-robusta">Modelos alternativos para previsão robusta</h3>
+<p>Se seu objetivo é previsão com alta acurácia, considere modelos mais sofisticados, como:</p>
+<ul>
+<li>Regressão polinomial</li>
+<li>Árvores de decisão e Random Forest</li>
+<li>Regressão Lasso/Ridge</li>
+<li>Modelos de séries temporais (ARIMA, Prophet)</li>
+<li>Redes neurais (deep learning)</li>
+</ul>
+<hr>
+</section>
+<section id="conclusão" class="level3">
+<h3 class="anchored" data-anchor-id="conclusão">Conclusão</h3>
+<blockquote class="blockquote">
+<p>A regressão linear é uma excelente ferramenta para <strong>modelar tendências</strong> e <strong>compreender relações</strong> entre variáveis, mas deve ser usada com cautela como modelo preditivo em contextos reais complexos.</p>
+</blockquote>
+</section>
 </section>
 <section id="suposições-da-regressão-linear" class="level2">
 <h2 class="anchored" data-anchor-id="suposições-da-regressão-linear">Suposições da Regressão Linear</h2>

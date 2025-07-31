@@ -61,7 +61,6 @@ $$
 
 - Intercepto $\beta_0 = 2$
 - Inclinação $\beta_1 = 3$
-
 ---
 
 ## Cálculo dos Coeficientes
@@ -77,6 +76,61 @@ Fórmula do intercepto:
 $$
 \beta_0 = \bar{y} - \beta_1 \bar{x}
 $$
+
+### Passos do MQO
+
+Queremos encontrar os coeficientes $\beta_0$ e $\beta_1$ que melhor ajustam o modelo:
+
+$$
+\hat{y} = \beta_0 + \beta_1 x
+$$
+
+#### Calcular as médias
+
+$$
+\bar{x} = \frac{0 + 1 + 2}{3} = 1 \\
+\bar{y} = \frac{2 + 5 + 8}{3} = 5
+$$
+
+#### Calcular o coeficiente angular ($\beta_1$)
+
+$$
+\beta_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}
+$$
+
+Montando a tabela:
+
+| $x_i$ | $y_i$ | $x_i - \bar{x}$ | $y_i - \bar{y}$ | $(x_i - \bar{x})(y_i - \bar{y})$ | $(x_i - \bar{x})^2$ |
+|------|------|------------------|------------------|----------------------------------|---------------------|
+| 0    | 2    | -1               | -3               | 3                                | 1                   |
+| 1    | 5    | 0                | 0                | 0                                | 0                   |
+| 2    | 8    | 1                | 3                | 3                                | 1                   |
+
+Somando:
+
+$$
+\beta_1 = \frac{3 + 0 + 3}{1 + 0 + 1} = \frac{6}{2} = 3
+$$
+
+#### Calcular o intercepto ($\beta_0$)
+
+$$
+\beta_0 = \bar{y} - \beta_1 \bar{x} = 5 - 3 \cdot 1 = 2
+$$
+
+---
+
+### Resultado:
+
+A equação estimada é:
+
+$$
+\hat{y} = 2 + 3x
+$$
+
+- Intercepto $\beta_0 = 2$
+- Inclinação $\beta_1 = 3$
+
 
 ---
 
@@ -136,6 +190,97 @@ $$
 \hat{y} = 50000 - 0.05x_1 + 300x_2 + 1000x_3
 $$
 
+###  Forma matricial do MQO
+
+Para múltiplas variáveis, usamos a fórmula matricial:
+
+$$
+\hat{\beta} = (X^\top X)^{-1} X^\top y
+$$
+
+Onde:
+
+- $X$: matriz de variáveis (com uma coluna de 1s para o intercepto)
+- $y$: vetor de respostas
+- $\hat{\beta}$: vetor de coeficientes $(\beta_0, \beta_1, \beta_2, \beta_3)$
+
+---
+
+### Suponha os seguintes dados:
+
+| $x_1$ (km) | $x_2$ (ano) | $x_3$ (comb.) | $y$ (preço) |
+|------------|-------------|---------------|-------------|
+| 20000      | 2020        | 0             | 56000       |
+| 40000      | 2019        | 1             | 55200       |
+| 10000      | 2021        | 1             | 59000       |
+
+---
+
+### Montando as matrizes
+
+$$
+X =
+\begin{bmatrix}
+1 & 20000 & 2020 & 0 \\
+1 & 40000 & 2019 & 1 \\
+1 & 10000 & 2021 & 1 \\
+\end{bmatrix},
+\quad
+y =
+\begin{bmatrix}
+56000 \\
+55200 \\
+59000 \\
+\end{bmatrix}
+$$
+
+---
+
+### Aplicando o MQO
+
+Usamos a fórmula:
+
+$$
+\hat{\beta} = (X^\top X)^{-1} X^\top y
+$$
+
+O cálculo envolve:
+
+1. Multiplicar $X^\top X$
+2. Inverter $(X^\top X)$
+3. Multiplicar pelo vetor $X^\top y$
+
+Esse processo gera os coeficientes estimados:
+
+$$
+\hat{\beta} =
+\begin{bmatrix}
+50000 \\
+-0.05 \\
+300 \\
+1000 \\
+\end{bmatrix}
+$$
+
+---
+
+### Resultado:
+
+A equação estimada da regressão múltipla é:
+
+$$
+\hat{y} = 50000 - 0.05x_1 + 300x_2 + 1000x_3
+$$
+
+---
+
+### 💡 Observação:
+
+Esse modelo diz, por exemplo, que:
+- Cada quilômetro rodado reduz o valor do carro em R$ 0,05
+- Cada ano de fabricação a mais aumenta o valor em R$ 300
+- Veículos a álcool valem R$ 1.000 a mais, em média, que os a gasolina (assumindo $x_3 = 1$)
+
 ---
 
 ## Exemplo Prático em Python (Regressão Linear Múltipla)
@@ -169,11 +314,9 @@ print("Valores previstos:", y_pred)
 ```
 
 ---
-## nterpretação e Limitações Preditivas da Regressão Linear
+## Interpretação e Limitações Preditivas da Regressão Linear
 
 A regressão linear é frequentemente usada como modelo preditivo, mas é importante entender **suas reais capacidades e limitações**.
-
----
 
 ### O que a Regressão Linear faz bem?
 
@@ -188,7 +331,7 @@ Ela é excelente para:
 
 ---
 
-### Mas e como modelo preditivo?
+### Como modelo preditivo?
 
 A regressão linear **não é robusta** como modelo preditivo em situações reais com dados complexos. Ela assume uma série de condições ideais:
 
@@ -234,7 +377,7 @@ Se seu objetivo é previsão com alta acurácia, considere modelos mais sofistic
 
 ---
 
-### 💡 Conclusão
+### Conclusão
 
 > A regressão linear é uma excelente ferramenta para **modelar tendências** e **compreender relações** entre variáveis, mas deve ser usada com cautela como modelo preditivo em contextos reais complexos.
 
