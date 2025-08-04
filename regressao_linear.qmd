@@ -88,7 +88,7 @@ $$
 #### Calcular as médias
 
 $$
-\bar{x} = \frac{0 + 1 + 2}{3} = 1 \\
+\bar{x} = \frac{0 + 1 + 2}{3} = 1\\
 \bar{y} = \frac{2 + 5 + 8}{3} = 5
 $$
 
