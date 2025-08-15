@@ -316,11 +316,11 @@ print("Valores previstos:", y_pred)
 ---
 ## Interpretação e Limitações Preditivas da Regressão Linear
 
-A regressão linear é frequentemente usada como modelo preditivo, mas é importante entender **suas reais capacidades e limitações**.
+A regressão linear é frequentemente usada como modelo preditivo, mas é importante entender suas reais capacidades e limitações.
 
 ### O que a Regressão Linear faz bem?
 
-A regressão linear **capta a tendência média** de uma variável resposta $y$ em função de uma ou mais variáveis explicativas $x$.
+A regressão linear capta a tendência média de uma variável resposta $y$ em função de uma ou mais variáveis explicativas $x$.
 
 Ela é excelente para:
 
@@ -333,14 +333,14 @@ Ela é excelente para:
 
 ### Como modelo preditivo?
 
-A regressão linear **não é robusta** como modelo preditivo em situações reais com dados complexos. Ela assume uma série de condições ideais:
+A regressão linear não é robusta como modelo preditivo em situações reais com dados complexos. Ela assume uma série de condições ideais:
 
 1. Linearidade da relação entre $x$ e $y$
 2. Homocedasticidade (variância constante dos resíduos)
 3. Normalidade dos erros
 4. Ausência de multicolinearidade (na regressão múltipla)
 
-Quando essas condições **não são atendidas**, a capacidade preditiva **cai drasticamente**.
+Quando essas condições não são atendidas, a capacidade preditiva **cai drasticamente.
 
 ---
 
@@ -350,7 +350,7 @@ Quando essas condições **não são atendidas**, a capacidade preditiva **cai d
   > “Regressão linear é um modelo sólido de previsão.”
 
 - Prefira dizer:  
-  > “A regressão linear é uma ferramenta útil para **capturar a tendência média** de uma variável resposta com base em variáveis explicativas, **mas possui limitações como modelo preditivo**, especialmente em cenários não-lineares ou com alta variabilidade.”
+  > “A regressão linear é uma ferramenta útil para capturar a tendência média de uma variável resposta com base em variáveis explicativas, mas possui limitações como modelo preditivo, especialmente em cenários não-lineares ou com alta variabilidade.”
 
 ---
 
@@ -379,69 +379,4 @@ Se seu objetivo é previsão com alta acurácia, considere modelos mais sofistic
 
 ### Conclusão
 
-> A regressão linear é uma excelente ferramenta para **modelar tendências** e **compreender relações** entre variáveis, mas deve ser usada com cautela como modelo preditivo em contextos reais complexos.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Suposições da Regressão Linear
-
-1. **Linearidade**: relação entre $x$ e $y$ é linear
-2. **Independência dos erros**
-3. **Homoscedasticidade**: variância constante dos resíduos
-4. **Normalidade dos resíduos**
-
----
-
-## Métricas para avaliar o modelo
-
-- **R² (coeficiente de determinação)**: quão bem o modelo explica os dados (varia de 0 a 1)
-- **Erro padrão dos coeficientes**
-- **p-valor**: testa se o coeficiente é estatisticamente significativo
-- **Resíduos**: diferença entre valores reais e previstos
-
----
-
-## Aplicações
-
-- Previsão de preços (imóveis, ações, produtos)
-- Estimativa de demanda
-- Relação entre características (salário vs educação, consumo vs renda)
-- Modelos econômicos, biomédicos, engenharias e mais
-
----
-
-## Resumo Visual
-
-| Tipo de Regressão | Fórmula | Quando Usar |
-|-------------------|---------|-------------|
-| Linear Simples | $y = \beta_0 + \beta_1 x$ | Uma variável explicativa |
-| Linear Múltipla | $y = \beta_0 + \beta_1 x_1 + \dots + \beta_n x_n$ | Múltiplas variáveis explicativas |
-
----
-
-## Limitações
-
-- Relação deve ser aproximadamente linear
-- Outliers podem distorcer o modelo
-- Não implica causalidade (correlação ≠ causa)
-
----
+A regressão linear é uma excelente ferramenta para modelar tendências** e compreender relações entre variáveis, mas deve ser usada com cautela como modelo preditivo em contextos reais complexos.
