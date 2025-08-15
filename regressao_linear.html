@@ -120,6 +120,7 @@ window.Quarto = {
   <li><a href="#fórmula" id="toc-fórmula" class="nav-link" data-scroll-target="#fórmula">Fórmula</a></li>
   </ul></li>
   <li><a href="#o-que-é-o-coeficiente-angular-beta_1" id="toc-o-que-é-o-coeficiente-angular-beta_1" class="nav-link" data-scroll-target="#o-que-é-o-coeficiente-angular-beta_1">O que é o Coeficiente Angular (<span class="math inline">\(\beta_1\)</span>)?</a></li>
+  <li><a href="#o-que-é-o-erro-varepsilon" id="toc-o-que-é-o-erro-varepsilon" class="nav-link" data-scroll-target="#o-que-é-o-erro-varepsilon">O que é o Erro (<span class="math inline">\(\varepsilon\)</span>)?</a></li>
   <li><a href="#exemplo-de-regressão-linear-simples" id="toc-exemplo-de-regressão-linear-simples" class="nav-link" data-scroll-target="#exemplo-de-regressão-linear-simples">Exemplo de Regressão Linear Simples</a></li>
   <li><a href="#cálculo-dos-coeficientes" id="toc-cálculo-dos-coeficientes" class="nav-link" data-scroll-target="#cálculo-dos-coeficientes">Cálculo dos Coeficientes</a>
   <ul class="collapse">
@@ -137,9 +138,10 @@ window.Quarto = {
   <li><a href="#montando-as-matrizes" id="toc-montando-as-matrizes" class="nav-link" data-scroll-target="#montando-as-matrizes">Montando as matrizes</a></li>
   <li><a href="#aplicando-o-mqo" id="toc-aplicando-o-mqo" class="nav-link" data-scroll-target="#aplicando-o-mqo">Aplicando o MQO</a></li>
   <li><a href="#resultado-1" id="toc-resultado-1" class="nav-link" data-scroll-target="#resultado-1">Resultado:</a></li>
-  <li><a href="#observação" id="toc-observação" class="nav-link" data-scroll-target="#observação">💡 Observação:</a></li>
+  <li><a href="#observação" id="toc-observação" class="nav-link" data-scroll-target="#observação">Observação:</a></li>
   </ul></li>
   <li><a href="#exemplo-prático-em-python-regressão-linear-múltipla" id="toc-exemplo-prático-em-python-regressão-linear-múltipla" class="nav-link" data-scroll-target="#exemplo-prático-em-python-regressão-linear-múltipla">Exemplo Prático em Python (Regressão Linear Múltipla)</a></li>
+  <li><a href="#exemplo-prático-com-gráfico-comparando-a-regressão-linear-simples-e-múltipla" id="toc-exemplo-prático-com-gráfico-comparando-a-regressão-linear-simples-e-múltipla" class="nav-link" data-scroll-target="#exemplo-prático-com-gráfico-comparando-a-regressão-linear-simples-e-múltipla">Exemplo prático com gráfico comparando a regressão linear simples e múltipla</a></li>
   <li><a href="#interpretação-e-limitações-preditivas-da-regressão-linear" id="toc-interpretação-e-limitações-preditivas-da-regressão-linear" class="nav-link" data-scroll-target="#interpretação-e-limitações-preditivas-da-regressão-linear">Interpretação e Limitações Preditivas da Regressão Linear</a>
   <ul class="collapse">
   <li><a href="#o-que-a-regressão-linear-faz-bem" id="toc-o-que-a-regressão-linear-faz-bem" class="nav-link" data-scroll-target="#o-que-a-regressão-linear-faz-bem">O que a Regressão Linear faz bem?</a></li>
@@ -149,11 +151,6 @@ window.Quarto = {
   <li><a href="#modelos-alternativos-para-previsão-robusta" id="toc-modelos-alternativos-para-previsão-robusta" class="nav-link" data-scroll-target="#modelos-alternativos-para-previsão-robusta">Modelos alternativos para previsão robusta</a></li>
   <li><a href="#conclusão" id="toc-conclusão" class="nav-link" data-scroll-target="#conclusão">Conclusão</a></li>
   </ul></li>
-  <li><a href="#suposições-da-regressão-linear" id="toc-suposições-da-regressão-linear" class="nav-link" data-scroll-target="#suposições-da-regressão-linear">Suposições da Regressão Linear</a></li>
-  <li><a href="#métricas-para-avaliar-o-modelo" id="toc-métricas-para-avaliar-o-modelo" class="nav-link" data-scroll-target="#métricas-para-avaliar-o-modelo">Métricas para avaliar o modelo</a></li>
-  <li><a href="#aplicações" id="toc-aplicações" class="nav-link" data-scroll-target="#aplicações">Aplicações</a></li>
-  <li><a href="#resumo-visual" id="toc-resumo-visual" class="nav-link" data-scroll-target="#resumo-visual">Resumo Visual</a></li>
-  <li><a href="#limitações" id="toc-limitações" class="nav-link" data-scroll-target="#limitações">Limitações</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -189,14 +186,14 @@ window.Quarto = {
 <h1>Regressão Linear: Simples e Múltipla</h1>
 <section id="o-que-é-regressão-linear" class="level2">
 <h2 class="anchored" data-anchor-id="o-que-é-regressão-linear">O que é Regressão Linear?</h2>
-<p>A regressão linear é uma técnica estatística usada para modelar a <strong>relação entre variáveis</strong>. O objetivo é <strong>prever ou explicar</strong> uma variável dependente <span class="math inline">\(y\)</span> com base em uma ou mais variáveis independentes <span class="math inline">\(x\)</span>.</p>
+<p>A regressão linear é uma técnica estatística usada para modelar a relação entre variáveis. O objetivo é explicar uma variável dependente <span class="math inline">\(y\)</span> com base em uma ou mais variáveis independentes <span class="math inline">\(x\)</span>.</p>
 <hr>
 </section>
 <section id="regressão-linear-simples" class="level2">
 <h2 class="anchored" data-anchor-id="regressão-linear-simples">Regressão Linear Simples</h2>
 <section id="definição" class="level3">
 <h3 class="anchored" data-anchor-id="definição">Definição</h3>
-<p>Modela a relação entre <strong>duas variáveis</strong>:<br>
+<p>Modela a relação entre duas variáveis:<br>
 - Uma variável dependente <span class="math inline">\(y\)</span><br>
 - Uma variável independente <span class="math inline">\(x\)</span></p>
 <hr>
@@ -214,6 +211,7 @@ window.Quarto = {
 <li><span class="math inline">\(\beta_1\)</span>: coeficiente angular<br>
 </li>
 <li><span class="math inline">\(x\)</span>: variável explicativa</li>
+<li><span class="math inline">\(\varepsilon\)</span>: erro</li>
 </ul>
 <hr>
 </section>
@@ -225,6 +223,22 @@ window.Quarto = {
 <li>Se <span class="math inline">\(\beta_1 = 3\)</span>, cada aumento de 1 unidade em <span class="math inline">\(x\)</span> causa aumento de 3 unidades em <span class="math inline">\(y\)</span>.</li>
 <li>Se <span class="math inline">\(\beta_1 &lt; 0\)</span>, a relação é decrescente.</li>
 </ul>
+</section>
+<section id="o-que-é-o-erro-varepsilon" class="level2">
+<h2 class="anchored" data-anchor-id="o-que-é-o-erro-varepsilon">O que é o Erro (<span class="math inline">\(\varepsilon\)</span>)?</h2>
+<p>Representa a diferença entre o valor observado da variável dependente <span class="math inline">\(y\)</span> e o valor previsto pelo modelo <span class="math inline">\(\hat{y}\)</span></p>
+<p><span class="math display">\[
+\varepsilon = y - \hat{y}
+\]</span></p>
+<p>Ele representa tudo que influência <span class="math inline">\(y\)</span> e que não é explicado pela variável explicativa <span class="math inline">\(x\)</span> incluída no modelo.</p>
+<p>Em outras palavras:</p>
+<ul>
+<li>O modelo tenta explicar <span class="math inline">\(y\)</span> com base em <span class="math inline">\(x\)</span> através da relação linear <span class="math inline">\(\hat{y} = \beta_0 + \beta_1 x\)</span>.</li>
+<li>O erro é o que sobra da parcela que <span class="math inline">\(y\)</span> que não pode ser prevista pelo modelo.</li>
+<li>Inclui fatores aleatórias, ruído de medição, variáveis omitidas ou influências externas não capturadas pelo modelo.</li>
+</ul>
+<p>Se os dados seguintes exatamente a reta do modelo, o erro será zero. Em dados reais, os erros quase sempre são diferentes de zero, e a análise deles ajuda a avaliar o quão bom é o modelo.</p>
+<p>O exemplo a seguir segue exatamente a reta do modelo e por isso o erro acaba sendo zero.</p>
 <hr>
 </section>
 <section id="exemplo-de-regressão-linear-simples" class="level2">
@@ -262,7 +276,7 @@ y = 2 + 3x
 </section>
 <section id="cálculo-dos-coeficientes" class="level2">
 <h2 class="anchored" data-anchor-id="cálculo-dos-coeficientes">Cálculo dos Coeficientes</h2>
-<p>O método dos mínimos quadrados calcula os coeficientes que <strong>minimizam a soma dos quadrados dos erros</strong>.</p>
+<p>O método dos mínimos quadrados calcula os coeficientes que minimizam a soma dos quadrados dos erros.</p>
 <p>Fórmula fo coeficiente angular: <span class="math display">\[
 \beta_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}
 \]</span></p>
@@ -278,8 +292,10 @@ y = 2 + 3x
 <section id="calcular-as-médias" class="level4">
 <h4 class="anchored" data-anchor-id="calcular-as-médias">Calcular as médias</h4>
 <p><span class="math display">\[
-\bar{x} = \frac{0 + 1 + 2}{3} = 1\\
-\bar{y} = \frac{2 + 5 + 8}{3} = 5
+\begin{aligned}
+\bar{x} &amp;= \frac{0 + 1 + 2}{3} = 1 \\
+\bar{y} &amp;= \frac{2 + 5 + 8}{3} = 5
+\end{aligned}
 \]</span></p>
 </section>
 <section id="calcular-o-coeficiente-angular-beta_1" class="level4">
@@ -362,7 +378,7 @@ y = 2 + 3x
 </section>
 <section id="exemplo-prático-em-python-regressão-linear-simples" class="level2">
 <h2 class="anchored" data-anchor-id="exemplo-prático-em-python-regressão-linear-simples">Exemplo Prático em Python (Regressão Linear Simples)</h2>
-<div id="6ba3361e" class="cell" data-execution_count="1">
+<div id="a1631a20" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
@@ -375,30 +391,29 @@ y = 2 + 3x
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>modelo <span class="op">=</span> LinearRegression()</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>modelo.fit(x, y)</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Coeficientes</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Intercepto (b0):"</span>, modelo.intercept_)</span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Coeficiente angular (b1):"</span>, modelo.coef_[<span class="dv">0</span>])</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Previsões</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> modelo.predict(x)</span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Dados reais'</span>)</span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y_pred, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Regressão linear'</span>)</span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Regressão Linear Simples"</span>)</span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"x"</span>)</span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"y"</span>)</span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Intercepto (b0): 2.2
-Coeficiente angular (b1): 0.6</code></pre>
-</div>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Previsões</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> modelo.predict(x)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">6</span>))</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>plt.scatter(x, y, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">'Dados reais'</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>plt.plot(x, y_pred, color<span class="op">=</span><span class="st">'red'</span>, label<span class="op">=</span><span class="st">'Reta de regressão'</span>)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Adicionando os erros (resíduos) como linhas verticais</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> xi, yi, ypi <span class="kw">in</span> <span class="bu">zip</span>(x, y, y_pred):</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>    plt.vlines(xi, ypi, yi, colors<span class="op">=</span><span class="st">'green'</span>, linestyles<span class="op">=</span><span class="st">'dashed'</span>, alpha<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Configuração do gráfico</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Regressão Linear com Erros (Resíduos)"</span>)</span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"x"</span>)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"y"</span>)</span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="regressao_linear_files/figure-html/cell-2-output-2.png" width="589" height="450" class="figure-img"></p>
+<p><img src="regressao_linear_files/figure-html/cell-2-output-1.png" width="663" height="524" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -408,7 +423,7 @@ Coeficiente angular (b1): 0.6</code></pre>
 <h2 class="anchored" data-anchor-id="regressão-linear-múltipla">Regressão Linear Múltipla</h2>
 <section id="definição-1" class="level3">
 <h3 class="anchored" data-anchor-id="definição-1">Definição</h3>
-<p>Estende a regressão simples para incluir <strong>mais de uma variável explicativa</strong>.</p>
+<p>Estende a regressão simples para incluir mais de uma variável explicativa.</p>
 </section>
 <section id="fórmula-1" class="level3">
 <h3 class="anchored" data-anchor-id="fórmula-1">Fórmula</h3>
@@ -416,7 +431,7 @@ Coeficiente angular (b1): 0.6</code></pre>
 \hat{y} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_n x_n
 \]</span></p>
 <ul>
-<li>Cada <span class="math inline">\(\beta_i\)</span> representa o <strong>efeito isolado de <span class="math inline">\(x_i\)</span></strong> sobre <span class="math inline">\(y\)</span>, mantendo os outros fixos.</li>
+<li>Cada <span class="math inline">\(\beta_i\)</span> representa o efeito isolado de <span class="math inline">\(x_i\)</span> sobre <span class="math inline">\(y\)</span>, mantendo os outros fixos.</li>
 </ul>
 </section>
 <section id="exemplo" class="level3">
@@ -526,73 +541,187 @@ y =
 <hr>
 </section>
 <section id="observação" class="level3">
-<h3 class="anchored" data-anchor-id="observação">💡 Observação:</h3>
+<h3 class="anchored" data-anchor-id="observação">Observação:</h3>
 <p>Esse modelo diz, por exemplo, que: - Cada quilômetro rodado reduz o valor do carro em R$ 0,05 - Cada ano de fabricação a mais aumenta o valor em R$ 300 - Veículos a álcool valem R$ 1.000 a mais, em média, que os a gasolina (assumindo <span class="math inline">\(x_3 = 1\)</span>)</p>
 <hr>
 </section>
 </section>
 <section id="exemplo-prático-em-python-regressão-linear-múltipla" class="level2">
 <h2 class="anchored" data-anchor-id="exemplo-prático-em-python-regressão-linear-múltipla">Exemplo Prático em Python (Regressão Linear Múltipla)</h2>
-<div id="226817b8" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Variáveis explicativas (2 variáveis: x1 e x2)</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">2</span>],</span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">2</span>, <span class="dv">1</span>],</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">3</span>, <span class="dv">3</span>],</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">4</span>, <span class="dv">5</span>],</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">5</span>, <span class="dv">4</span>]</span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Variável resposta</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">10</span>])</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustando o modelo</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>modelo <span class="op">=</span> LinearRegression()</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>modelo.fit(X, y)</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultados</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Intercepto (b0):"</span>, modelo.intercept_)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Coeficientes (b1, b2):"</span>, modelo.coef_)</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Previsões</span></span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> modelo.predict(X)</span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Valores previstos:"</span>, y_pred)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7cc29aa9" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Variáveis explicativas (2 variáveis: x1 e x2)</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.array([</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">1</span>, <span class="dv">2</span>],</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">2</span>, <span class="dv">1</span>],</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">3</span>, <span class="dv">3</span>],</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">4</span>, <span class="dv">5</span>],</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    [<span class="dv">5</span>, <span class="dv">4</span>]</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Variável resposta</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="dv">5</span>, <span class="dv">6</span>, <span class="dv">9</span>, <span class="dv">11</span>, <span class="dv">10</span>])</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustando o modelo</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>modelo <span class="op">=</span> LinearRegression()</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>modelo.fit(X, y)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultados</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>intercepto <span class="op">=</span> modelo.intercept_</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>coeficientes <span class="op">=</span> modelo.coef_</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> modelo.predict(X)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculando o erro (resíduo)</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>erro <span class="op">=</span> y <span class="op">-</span> y_pred  <span class="co"># ε_i = y_i - ŷ_i</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Impressões</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Intercepto (b0):"</span>, intercepto)</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Coeficientes (b1, b2):"</span>, coeficientes)</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Valores previstos (ŷ):"</span>, y_pred)</span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Erro (ε = y - ŷ):"</span>, erro)</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Soma dos erros (≈0):"</span>, np.<span class="bu">sum</span>(erro))</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Média dos erros (≈0):"</span>, np.mean(erro))</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Gráfico dos resíduos</span></span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>,<span class="dv">5</span>))</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>plt.scatter(<span class="bu">range</span>(<span class="bu">len</span>(y)), y, label<span class="op">=</span><span class="st">'Valores observados'</span>, color<span class="op">=</span><span class="st">'blue'</span>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>plt.scatter(<span class="bu">range</span>(<span class="bu">len</span>(y_pred)), y_pred, label<span class="op">=</span><span class="st">'Valores previstos'</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(y)):</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    plt.vlines(i, y_pred[i], y[i], color<span class="op">=</span><span class="st">'gray'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)  <span class="co"># linhas verticais = erros</span></span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span>np.mean(y), color<span class="op">=</span><span class="st">'black'</span>, linestyle<span class="op">=</span><span class="st">':'</span>, linewidth<span class="op">=</span><span class="dv">1</span>, label<span class="op">=</span><span class="st">'Média de y'</span>)</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Observação'</span>)</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'y'</span>)</span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Regressão Linear Múltipla - Observado vs Previsto e Erros'</span>)</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Intercepto (b0): 3.200000000000001
 Coeficientes (b1, b2): [0.83333333 0.83333333]
-Valores previstos: [ 5.7  5.7  8.2 10.7 10.7]</code></pre>
+Valores previstos (ŷ): [ 5.7  5.7  8.2 10.7 10.7]
+Erro (ε = y - ŷ): [-0.7  0.3  0.8  0.3 -0.7]
+Soma dos erros (≈0): 1.7763568394002505e-15
+Média dos erros (≈0): 3.552713678800501e-16</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regressao_linear_files/figure-html/cell-3-output-2.png" width="659" height="450" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="exemplo-prático-com-gráfico-comparando-a-regressão-linear-simples-e-múltipla" class="level2">
+<h2 class="anchored" data-anchor-id="exemplo-prático-com-gráfico-comparando-a-regressão-linear-simples-e-múltipla">Exemplo prático com gráfico comparando a regressão linear simples e múltipla</h2>
+<div id="b9a799d2" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LinearRegression</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># ===== Regressão Linear Simples =====</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Dados simulados</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>x_s <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">20</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>y_s_true <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> x_s <span class="op">+</span> <span class="dv">5</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>y_s <span class="op">=</span> y_s_true <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="dv">3</span>, size<span class="op">=</span><span class="bu">len</span>(x_s))</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajuste (OLS)</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>coef_s <span class="op">=</span> np.polyfit(x_s, y_s, <span class="dv">1</span>)           <span class="co"># [b1, b0]</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>y_s_hat <span class="op">=</span> np.polyval(coef_s, x_s)           <span class="co"># previsões na reta ajustada</span></span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="co"># ===== Regressão Linear Múltipla (2 variáveis) =====</span></span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Malha de pontos para (x1, x2)</span></span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>x1 <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>x2 <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">10</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>x1g, x2g <span class="op">=</span> np.meshgrid(x1, x2)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Plano verdadeiro + ruído</span></span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>y_m_true <span class="op">=</span> <span class="fl">1.5</span> <span class="op">*</span> x1g <span class="op">+</span> <span class="fl">2.0</span> <span class="op">*</span> x2g <span class="op">+</span> <span class="dv">3</span></span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a>y_m <span class="op">=</span> y_m_true <span class="op">+</span> np.random.normal(<span class="dv">0</span>, <span class="dv">3</span>, size<span class="op">=</span>y_m_true.shape)</span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajuste (OLS) com scikit-learn</span></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>X_m <span class="op">=</span> np.column_stack([x1g.ravel(), x2g.ravel()])</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>reg <span class="op">=</span> LinearRegression().fit(X_m, y_m.ravel())</span>
+<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a>b0, b1, b2 <span class="op">=</span> reg.intercept_, reg.coef_[<span class="dv">0</span>], reg.coef_[<span class="dv">1</span>]</span>
+<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a>y_m_hat <span class="op">=</span> (b0 <span class="op">+</span> b1 <span class="op">*</span> x1g <span class="op">+</span> b2 <span class="op">*</span> x2g)</span>
+<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a><span class="co"># ===== Plot =====</span></span>
+<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a>fig <span class="op">=</span> plt.figure(figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">6</span>))</span>
+<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a><span class="co"># (1) Simples: pontos, reta e erros (distância vertical)</span></span>
+<span id="cb4-38"><a href="#cb4-38" aria-hidden="true" tabindex="-1"></a>ax1 <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">1</span>)</span>
+<span id="cb4-39"><a href="#cb4-39" aria-hidden="true" tabindex="-1"></a>ax1.scatter(x_s, y_s, label<span class="op">=</span><span class="st">"Observado"</span>)</span>
+<span id="cb4-40"><a href="#cb4-40" aria-hidden="true" tabindex="-1"></a>ax1.plot(x_s, y_s_hat, label<span class="op">=</span><span class="st">"Reta ajustada"</span>)</span>
+<span id="cb4-41"><a href="#cb4-41" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> xi, yi, yhi <span class="kw">in</span> <span class="bu">zip</span>(x_s, y_s, y_s_hat):</span>
+<span id="cb4-42"><a href="#cb4-42" aria-hidden="true" tabindex="-1"></a>    ax1.plot([xi, xi], [yi, yhi], linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)  <span class="co"># erro vertical</span></span>
+<span id="cb4-43"><a href="#cb4-43" aria-hidden="true" tabindex="-1"></a>ax1.set_title(<span class="st">"Regressão Linear Simples</span><span class="ch">\n</span><span class="st">Erro = distância vertical até a reta"</span>)</span>
+<span id="cb4-44"><a href="#cb4-44" aria-hidden="true" tabindex="-1"></a>ax1.set_xlabel(<span class="st">"x"</span>)</span>
+<span id="cb4-45"><a href="#cb4-45" aria-hidden="true" tabindex="-1"></a>ax1.set_ylabel(<span class="st">"y"</span>)</span>
+<span id="cb4-46"><a href="#cb4-46" aria-hidden="true" tabindex="-1"></a>ax1.legend()</span>
+<span id="cb4-47"><a href="#cb4-47" aria-hidden="true" tabindex="-1"></a>ax1.grid(<span class="va">True</span>)</span>
+<span id="cb4-48"><a href="#cb4-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-49"><a href="#cb4-49" aria-hidden="true" tabindex="-1"></a><span class="co"># (2) Múltipla: pontos, plano e erros (distância vertical)</span></span>
+<span id="cb4-50"><a href="#cb4-50" aria-hidden="true" tabindex="-1"></a>ax2 <span class="op">=</span> fig.add_subplot(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">2</span>, projection<span class="op">=</span><span class="st">"3d"</span>)</span>
+<span id="cb4-51"><a href="#cb4-51" aria-hidden="true" tabindex="-1"></a>ax2.scatter(x1g, x2g, y_m, label<span class="op">=</span><span class="st">"Observado"</span>)</span>
+<span id="cb4-52"><a href="#cb4-52" aria-hidden="true" tabindex="-1"></a>ax2.plot_surface(x1g, x2g, y_m_hat, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb4-53"><a href="#cb4-53" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> xi, xj, yi, yhi <span class="kw">in</span> <span class="bu">zip</span>(x1g.ravel(), x2g.ravel(), y_m.ravel(), y_m_hat.ravel()):</span>
+<span id="cb4-54"><a href="#cb4-54" aria-hidden="true" tabindex="-1"></a>    ax2.plot([xi, xi], [xj, xj], [yi, yhi], linestyle<span class="op">=</span><span class="st">"--"</span>, alpha<span class="op">=</span><span class="fl">0.6</span>)  <span class="co"># erro vertical</span></span>
+<span id="cb4-55"><a href="#cb4-55" aria-hidden="true" tabindex="-1"></a>ax2.set_title(<span class="st">"Regressão Linear Múltipla</span><span class="ch">\n</span><span class="st">Erro = distância vertical até o plano"</span>)</span>
+<span id="cb4-56"><a href="#cb4-56" aria-hidden="true" tabindex="-1"></a>ax2.set_xlabel(<span class="st">"x1"</span>)</span>
+<span id="cb4-57"><a href="#cb4-57" aria-hidden="true" tabindex="-1"></a>ax2.set_ylabel(<span class="st">"x2"</span>)</span>
+<span id="cb4-58"><a href="#cb4-58" aria-hidden="true" tabindex="-1"></a>ax2.set_zlabel(<span class="st">"y"</span>)</span>
+<span id="cb4-59"><a href="#cb4-59" aria-hidden="true" tabindex="-1"></a>ax2.legend()</span>
+<span id="cb4-60"><a href="#cb4-60" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-61"><a href="#cb4-61" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb4-62"><a href="#cb4-62" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="regressao_linear_files/figure-html/cell-4-output-1.png" width="1265" height="567" class="figure-img"></p>
+</figure>
+</div>
 </div>
 </div>
 <hr>
 </section>
 <section id="interpretação-e-limitações-preditivas-da-regressão-linear" class="level2">
 <h2 class="anchored" data-anchor-id="interpretação-e-limitações-preditivas-da-regressão-linear">Interpretação e Limitações Preditivas da Regressão Linear</h2>
-<p>A regressão linear é frequentemente usada como modelo preditivo, mas é importante entender <strong>suas reais capacidades e limitações</strong>.</p>
+<p>A regressão linear é frequentemente usada como modelo preditivo, mas é importante entender suas reais capacidades e limitações.</p>
 <section id="o-que-a-regressão-linear-faz-bem" class="level3">
 <h3 class="anchored" data-anchor-id="o-que-a-regressão-linear-faz-bem">O que a Regressão Linear faz bem?</h3>
-<p>A regressão linear <strong>capta a tendência média</strong> de uma variável resposta <span class="math inline">\(y\)</span> em função de uma ou mais variáveis explicativas <span class="math inline">\(x\)</span>.</p>
+<p>A regressão linear drescreve a tendência média de uma variável resposta <span class="math inline">\(y\)</span> em função de uma ou mais variáveis explicativas <span class="math inline">\(x\)</span>.</p>
 <p>Ela é excelente para:</p>
 <ul>
-<li><strong>Modelar relações lineares simples</strong></li>
-<li><strong>Observar comportamentos médios</strong></li>
-<li><strong>Interpretar coeficientes</strong> (quanto uma variável impacta a outra, em média)</li>
-<li><strong>Avaliação descritiva e inferencial</strong></li>
+<li>Modelar relações lineares simples</li>
+<li>Observar comportamentos médios</li>
+<li>Interpretar coeficientes (quanto uma variável impacta a outra, em média)</li>
+<li>Avaliação descritiva e inferencial</li>
 </ul>
 <hr>
 </section>
 <section id="como-modelo-preditivo" class="level3">
 <h3 class="anchored" data-anchor-id="como-modelo-preditivo">Como modelo preditivo?</h3>
-<p>A regressão linear <strong>não é robusta</strong> como modelo preditivo em situações reais com dados complexos. Ela assume uma série de condições ideais:</p>
+<p>A regressão linear não é robusta como modelo preditivo em situações reais com dados complexos. Ela assume uma série de condições ideais:</p>
 <ol type="1">
-<li>Linearidade da relação entre <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span></li>
-<li>Homocedasticidade (variância constante dos resíduos)</li>
-<li>Normalidade dos erros</li>
-<li>Ausência de multicolinearidade (na regressão múltipla)</li>
+<li>Linearidade da relação entre <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span>:<br>
+Se a relação real entre <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> não for linear, o modelo ajusta uma reta/plano onde a relação é curva ou mais complexa, então o “erro” que sobra (resíduo) não é mais puro ruído, mas carrega padrão que deveria estar na parte explicada.<br>
+</li>
+<li>Homocedasticidade (variância constante dos resíduos):<br>
+Quando a variância do erro muda com <span class="math inline">\(x\)</span>, as estimativas de coeficientes ainda podem ser não-viesadas, mas as previsões terão incertezas mal estimadas, aumentando a chance de erros grandes.<br>
+</li>
+<li>Normalidade dos erros:<br>
+Essencial para validade de testes e intervalos de confiança. Se violada, a incerteza da previsão é mal quantificada, afetando a confiabilidade das predições.<br>
+</li>
+<li>Ausência de multicolinearidade (na regressão múltipla):<br>
+Quando variáveis explicativas estão muito correlacionadas, o modelo tem dificuldade em distinguir seus efeitos individuais, com coeficientes instáveis, pequenas mudanças nos dados geram grandes mudanças nas previsões.</li>
 </ol>
-<p>Quando essas condições <strong>não são atendidas</strong>, a capacidade preditiva <strong>cai drasticamente</strong>.</p>
+<p>Quando essas condições não são atendidas, a capacidade preditiva cai drasticamente.</p>
 <hr>
 </section>
 <section id="forma-correta-de-interpretar" class="level3">
@@ -601,7 +730,7 @@ Valores previstos: [ 5.7  5.7  8.2 10.7 10.7]</code></pre>
 <li><p>Evite dizer que:<br>
 &gt; “Regressão linear é um modelo sólido de previsão.”</p></li>
 <li><p>Prefira dizer:<br>
-&gt; “A regressão linear é uma ferramenta útil para <strong>capturar a tendência média</strong> de uma variável resposta com base em variáveis explicativas, <strong>mas possui limitações como modelo preditivo</strong>, especialmente em cenários não-lineares ou com alta variabilidade.”</p></li>
+&gt; “A regressão linear é uma ferramenta útil para capturar a tendência média de uma variável resposta com base em variáveis explicativas, mas possui limitações como modelo preditivo, especialmente em cenários não-lineares ou com alta variabilidade.”</p></li>
 </ul>
 <hr>
 </section>
@@ -609,10 +738,10 @@ Valores previstos: [ 5.7  5.7  8.2 10.7 10.7]</code></pre>
 <h3 class="anchored" data-anchor-id="quando-usar-regressão-linear">Quando usar regressão linear?</h3>
 <p>Use regressão linear quando seu objetivo for:</p>
 <ul>
-<li><strong>Entender uma relação média</strong> entre variáveis</li>
-<li><strong>Testar hipóteses estatísticas</strong></li>
-<li><strong>Explicar variações médias</strong> em <span class="math inline">\(y\)</span></li>
-<li><strong>Prever dentro de um intervalo bem comportado</strong>, onde os dados sigam aproximadamente uma tendência linear</li>
+<li>Entender uma relação média entre variáveis</li>
+<li>Testar hipóteses estatísticas</li>
+<li>Explicar variações médias em <span class="math inline">\(y\)</span></li>
+<li>Prever dentro de um intervalo bem comportado, onde os dados sigam aproximadamente uma tendência linear</li>
 </ul>
 <hr>
 </section>
@@ -630,79 +759,8 @@ Valores previstos: [ 5.7  5.7  8.2 10.7 10.7]</code></pre>
 </section>
 <section id="conclusão" class="level3">
 <h3 class="anchored" data-anchor-id="conclusão">Conclusão</h3>
-<blockquote class="blockquote">
-<p>A regressão linear é uma excelente ferramenta para <strong>modelar tendências</strong> e <strong>compreender relações</strong> entre variáveis, mas deve ser usada com cautela como modelo preditivo em contextos reais complexos.</p>
-</blockquote>
+<p>A regressão linear é uma excelente ferramenta para representar tendências e compreender relações entre variáveis, mas deve ser usada com cautela como modelo preditivo em contextos reais complexos.</p>
 </section>
-</section>
-<section id="suposições-da-regressão-linear" class="level2">
-<h2 class="anchored" data-anchor-id="suposições-da-regressão-linear">Suposições da Regressão Linear</h2>
-<ol type="1">
-<li><strong>Linearidade</strong>: relação entre <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> é linear</li>
-<li><strong>Independência dos erros</strong></li>
-<li><strong>Homoscedasticidade</strong>: variância constante dos resíduos</li>
-<li><strong>Normalidade dos resíduos</strong></li>
-</ol>
-<hr>
-</section>
-<section id="métricas-para-avaliar-o-modelo" class="level2">
-<h2 class="anchored" data-anchor-id="métricas-para-avaliar-o-modelo">Métricas para avaliar o modelo</h2>
-<ul>
-<li><strong>R² (coeficiente de determinação)</strong>: quão bem o modelo explica os dados (varia de 0 a 1)</li>
-<li><strong>Erro padrão dos coeficientes</strong></li>
-<li><strong>p-valor</strong>: testa se o coeficiente é estatisticamente significativo</li>
-<li><strong>Resíduos</strong>: diferença entre valores reais e previstos</li>
-</ul>
-<hr>
-</section>
-<section id="aplicações" class="level2">
-<h2 class="anchored" data-anchor-id="aplicações">Aplicações</h2>
-<ul>
-<li>Previsão de preços (imóveis, ações, produtos)</li>
-<li>Estimativa de demanda</li>
-<li>Relação entre características (salário vs educação, consumo vs renda)</li>
-<li>Modelos econômicos, biomédicos, engenharias e mais</li>
-</ul>
-<hr>
-</section>
-<section id="resumo-visual" class="level2">
-<h2 class="anchored" data-anchor-id="resumo-visual">Resumo Visual</h2>
-<table class="caption-top table">
-<colgroup>
-<col style="width: 46%">
-<col style="width: 21%">
-<col style="width: 31%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Tipo de Regressão</th>
-<th>Fórmula</th>
-<th>Quando Usar</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td>Linear Simples</td>
-<td><span class="math inline">\(y = \beta_0 + \beta_1 x\)</span></td>
-<td>Uma variável explicativa</td>
-</tr>
-<tr class="even">
-<td>Linear Múltipla</td>
-<td><span class="math inline">\(y = \beta_0 + \beta_1 x_1 + \dots + \beta_n x_n\)</span></td>
-<td>Múltiplas variáveis explicativas</td>
-</tr>
-</tbody>
-</table>
-<hr>
-</section>
-<section id="limitações" class="level2">
-<h2 class="anchored" data-anchor-id="limitações">Limitações</h2>
-<ul>
-<li>Relação deve ser aproximadamente linear</li>
-<li>Outliers podem distorcer o modelo</li>
-<li>Não implica causalidade (correlação ≠ causa)</li>
-</ul>
-<hr>
 </section>
 </section>
 

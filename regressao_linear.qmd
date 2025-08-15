@@ -9,7 +9,7 @@ toc: true
 
 ## O que é Regressão Linear?
 
-A regressão linear é uma técnica estatística usada para modelar a **relação entre variáveis**. O objetivo é **prever ou explicar** uma variável dependente $y$ com base em uma ou mais variáveis independentes $x$.
+A regressão linear é uma técnica estatística usada para modelar a relação entre variáveis. O objetivo é explicar uma variável dependente $y$ com base em uma ou mais variáveis independentes $x$.
 
 ---
 
@@ -17,7 +17,7 @@ A regressão linear é uma técnica estatística usada para modelar a **relaçã
 
 ### Definição
 
-Modela a relação entre **duas variáveis**:  
+Modela a relação entre duas variáveis:  
 - Uma variável dependente $y$  
 - Uma variável independente $x$
 
@@ -32,7 +32,8 @@ $$
 - $\hat{y}$: valor previsto  
 - $\beta_0$: intercepto  
 - $\beta_1$: coeficiente angular  
-- $x$: variável explicativa  
+- $x$: variável explicativa
+- $\varepsilon$: erro  
 
 ---
 
@@ -42,6 +43,26 @@ $$
 
 - Se $\beta_1 = 3$, cada aumento de 1 unidade em $x$ causa aumento de 3 unidades em $y$.
 - Se $\beta_1 < 0$, a relação é decrescente.
+
+## O que é o Erro ($\varepsilon$)?
+
+Representa a diferença entre o valor observado da variável dependente $y$ e o valor previsto pelo modelo $\hat{y}$
+
+$$
+\varepsilon = y - \hat{y}
+$$
+
+Ele representa tudo que influência $y$ e que não é explicado pela variável explicativa $x$ incluída no modelo.
+
+Em outras palavras:
+
+- O modelo tenta explicar $y$ com base em $x$ através da relação linear $\hat{y} = \beta_0 + \beta_1 x$.
+- O erro é o que sobra da parcela que $y$ que não pode ser prevista pelo modelo.
+- Inclui fatores aleatórias, ruído de medição, variáveis omitidas ou influências externas não capturadas pelo modelo.
+
+Se os dados seguintes exatamente a reta do modelo, o erro será zero. Em dados reais, os erros quase sempre são diferentes de zero, e a análise deles ajuda a avaliar o quão bom é o modelo.
+
+O exemplo a seguir segue exatamente a reta do modelo e por isso o erro acaba sendo zero.
 
 ---
 
@@ -65,7 +86,7 @@ $$
 
 ## Cálculo dos Coeficientes
 
-O método dos mínimos quadrados calcula os coeficientes que **minimizam a soma dos quadrados dos erros**.
+O método dos mínimos quadrados calcula os coeficientes que minimizam a soma dos quadrados dos erros.
 
 Fórmula fo coeficiente angular:
 $$
@@ -88,8 +109,10 @@ $$
 #### Calcular as médias
 
 $$
-\bar{x} = \frac{0 + 1 + 2}{3} = 1\\
-\bar{y} = \frac{2 + 5 + 8}{3} = 5
+\begin{aligned}
+\bar{x} &= \frac{0 + 1 + 2}{3} = 1 \\
+\bar{y} &= \frac{2 + 5 + 8}{3} = 5
+\end{aligned}
 $$
 
 #### Calcular o coeficiente angular ($\beta_1$)
@@ -148,17 +171,20 @@ y = np.array([2, 4, 5, 4, 5])
 modelo = LinearRegression()
 modelo.fit(x, y)
 
-# Coeficientes
-print("Intercepto (b0):", modelo.intercept_)
-print("Coeficiente angular (b1):", modelo.coef_[0])
-
 # Previsões
 y_pred = modelo.predict(x)
 
 # Gráfico
+plt.figure(figsize=(8,6))
 plt.scatter(x, y, color='blue', label='Dados reais')
-plt.plot(x, y_pred, color='red', label='Regressão linear')
-plt.title("Regressão Linear Simples")
+plt.plot(x, y_pred, color='red', label='Reta de regressão')
+
+# Adicionando os erros (resíduos) como linhas verticais
+for xi, yi, ypi in zip(x, y, y_pred):
+    plt.vlines(xi, ypi, yi, colors='green', linestyles='dashed', alpha=0.8)
+
+# Configuração do gráfico
+plt.title("Regressão Linear com Erros (Resíduos)")
 plt.xlabel("x")
 plt.ylabel("y")
 plt.legend()
@@ -170,7 +196,7 @@ plt.show()
 
 ### Definição
 
-Estende a regressão simples para incluir **mais de uma variável explicativa**.
+Estende a regressão simples para incluir mais de uma variável explicativa.
 
 ### Fórmula
 
@@ -178,7 +204,7 @@ $$
 \hat{y} = \beta_0 + \beta_1 x_1 + \beta_2 x_2 + \cdots + \beta_n x_n
 $$
 
-- Cada $\beta_i$ representa o **efeito isolado de $x_i$** sobre $y$, mantendo os outros fixos.
+- Cada $\beta_i$ representa o efeito isolado de $x_i$ sobre $y$, mantendo os outros fixos.
 
 ### Exemplo:
 Previsão do preço de um carro com base em:
@@ -274,7 +300,7 @@ $$
 
 ---
 
-### 💡 Observação:
+### Observação:
 
 Esse modelo diz, por exemplo, que:
 - Cada quilômetro rodado reduz o valor do carro em R$ 0,05
@@ -286,6 +312,7 @@ Esse modelo diz, por exemplo, que:
 ## Exemplo Prático em Python (Regressão Linear Múltipla)
 ```{python}
 import numpy as np
+import matplotlib.pyplot as plt
 from sklearn.linear_model import LinearRegression
 
 # Variáveis explicativas (2 variáveis: x1 e x2)
@@ -305,12 +332,101 @@ modelo = LinearRegression()
 modelo.fit(X, y)
 
 # Resultados
-print("Intercepto (b0):", modelo.intercept_)
-print("Coeficientes (b1, b2):", modelo.coef_)
-
-# Previsões
+intercepto = modelo.intercept_
+coeficientes = modelo.coef_
 y_pred = modelo.predict(X)
-print("Valores previstos:", y_pred)
+
+# Calculando o erro (resíduo)
+erro = y - y_pred  # ε_i = y_i - ŷ_i
+
+# Impressões
+print("Intercepto (b0):", intercepto)
+print("Coeficientes (b1, b2):", coeficientes)
+print("Valores previstos (ŷ):", y_pred)
+print("Erro (ε = y - ŷ):", erro)
+print("Soma dos erros (≈0):", np.sum(erro))
+print("Média dos erros (≈0):", np.mean(erro))
+
+# Gráfico dos resíduos
+plt.figure(figsize=(8,5))
+plt.scatter(range(len(y)), y, label='Valores observados', color='blue')
+plt.scatter(range(len(y_pred)), y_pred, label='Valores previstos', color='red')
+for i in range(len(y)):
+    plt.vlines(i, y_pred[i], y[i], color='gray', linestyle='--')  # linhas verticais = erros
+plt.axhline(y=np.mean(y), color='black', linestyle=':', linewidth=1, label='Média de y')
+plt.xlabel('Observação')
+plt.ylabel('y')
+plt.title('Regressão Linear Múltipla - Observado vs Previsto e Erros')
+plt.legend()
+plt.grid(True)
+plt.show()
+```
+
+## Exemplo prático com gráfico comparando a regressão linear simples e múltipla
+```{python}
+import numpy as np
+import matplotlib.pyplot as plt
+from sklearn.linear_model import LinearRegression
+from mpl_toolkits.mplot3d import Axes3D
+
+np.random.seed(42)
+
+# ===== Regressão Linear Simples =====
+# Dados simulados
+x_s = np.linspace(0, 10, 20)
+y_s_true = 2 * x_s + 5
+y_s = y_s_true + np.random.normal(0, 3, size=len(x_s))
+
+# Ajuste (OLS)
+coef_s = np.polyfit(x_s, y_s, 1)           # [b1, b0]
+y_s_hat = np.polyval(coef_s, x_s)           # previsões na reta ajustada
+
+# ===== Regressão Linear Múltipla (2 variáveis) =====
+# Malha de pontos para (x1, x2)
+x1 = np.linspace(0, 10, 10)
+x2 = np.linspace(0, 10, 10)
+x1g, x2g = np.meshgrid(x1, x2)
+
+# Plano verdadeiro + ruído
+y_m_true = 1.5 * x1g + 2.0 * x2g + 3
+y_m = y_m_true + np.random.normal(0, 3, size=y_m_true.shape)
+
+# Ajuste (OLS) com scikit-learn
+X_m = np.column_stack([x1g.ravel(), x2g.ravel()])
+reg = LinearRegression().fit(X_m, y_m.ravel())
+b0, b1, b2 = reg.intercept_, reg.coef_[0], reg.coef_[1]
+y_m_hat = (b0 + b1 * x1g + b2 * x2g)
+
+# ===== Plot =====
+fig = plt.figure(figsize=(14, 6))
+
+# (1) Simples: pontos, reta e erros (distância vertical)
+ax1 = fig.add_subplot(1, 2, 1)
+ax1.scatter(x_s, y_s, label="Observado")
+ax1.plot(x_s, y_s_hat, label="Reta ajustada")
+for xi, yi, yhi in zip(x_s, y_s, y_s_hat):
+    ax1.plot([xi, xi], [yi, yhi], linestyle="--", alpha=0.6)  # erro vertical
+ax1.set_title("Regressão Linear Simples\nErro = distância vertical até a reta")
+ax1.set_xlabel("x")
+ax1.set_ylabel("y")
+ax1.legend()
+ax1.grid(True)
+
+# (2) Múltipla: pontos, plano e erros (distância vertical)
+ax2 = fig.add_subplot(1, 2, 2, projection="3d")
+ax2.scatter(x1g, x2g, y_m, label="Observado")
+ax2.plot_surface(x1g, x2g, y_m_hat, alpha=0.5)
+for xi, xj, yi, yhi in zip(x1g.ravel(), x2g.ravel(), y_m.ravel(), y_m_hat.ravel()):
+    ax2.plot([xi, xi], [xj, xj], [yi, yhi], linestyle="--", alpha=0.6)  # erro vertical
+ax2.set_title("Regressão Linear Múltipla\nErro = distância vertical até o plano")
+ax2.set_xlabel("x1")
+ax2.set_ylabel("x2")
+ax2.set_zlabel("y")
+ax2.legend()
+
+plt.tight_layout()
+plt.show()
+
 ```
 
 ---
@@ -320,14 +436,14 @@ A regressão linear é frequentemente usada como modelo preditivo, mas é import
 
 ### O que a Regressão Linear faz bem?
 
-A regressão linear capta a tendência média de uma variável resposta $y$ em função de uma ou mais variáveis explicativas $x$.
+A regressão linear drescreve a tendência média de uma variável resposta $y$ em função de uma ou mais variáveis explicativas $x$.
 
 Ela é excelente para:
 
-- **Modelar relações lineares simples**
-- **Observar comportamentos médios**
-- **Interpretar coeficientes** (quanto uma variável impacta a outra, em média)
-- **Avaliação descritiva e inferencial**
+- Modelar relações lineares simples
+- Observar comportamentos médios
+- Interpretar coeficientes (quanto uma variável impacta a outra, em média)
+- Avaliação descritiva e inferencial
 
 ---
 
@@ -335,12 +451,16 @@ Ela é excelente para:
 
 A regressão linear não é robusta como modelo preditivo em situações reais com dados complexos. Ela assume uma série de condições ideais:
 
-1. Linearidade da relação entre $x$ e $y$
-2. Homocedasticidade (variância constante dos resíduos)
-3. Normalidade dos erros
-4. Ausência de multicolinearidade (na regressão múltipla)
+1. Linearidade da relação entre $x$ e $y$:  
+   Se a relação real entre $x$ e $y$ não for linear, o modelo ajusta uma reta/plano onde a relação é curva ou mais complexa, então o “erro” que sobra (resíduo) não é mais puro ruído, mas carrega padrão que deveria estar na parte explicada.  
+2. Homocedasticidade (variância constante dos resíduos):  
+   Quando a variância do erro muda com $x$, as estimativas de coeficientes ainda podem ser não-viesadas, mas as previsões terão incertezas mal estimadas, aumentando a chance de erros grandes.     
+3. Normalidade dos erros:  
+   Essencial para validade de testes e intervalos de confiança. Se violada, a incerteza da previsão é mal quantificada, afetando a confiabilidade das predições.   
+4. Ausência de multicolinearidade (na regressão múltipla):  
+   Quando variáveis explicativas estão muito correlacionadas, o modelo tem dificuldade em distinguir seus efeitos individuais, com coeficientes instáveis, pequenas mudanças nos dados geram grandes mudanças nas previsões.
 
-Quando essas condições não são atendidas, a capacidade preditiva **cai drasticamente.
+Quando essas condições não são atendidas, a capacidade preditiva cai drasticamente.
 
 ---
 
@@ -358,10 +478,10 @@ Quando essas condições não são atendidas, a capacidade preditiva **cai drast
 
 Use regressão linear quando seu objetivo for:
 
-- **Entender uma relação média** entre variáveis
-- **Testar hipóteses estatísticas**
-- **Explicar variações médias** em $y$
-- **Prever dentro de um intervalo bem comportado**, onde os dados sigam aproximadamente uma tendência linear
+- Entender uma relação média entre variáveis
+- Testar hipóteses estatísticas
+- Explicar variações médias em $y$
+- Prever dentro de um intervalo bem comportado, onde os dados sigam aproximadamente uma tendência linear
 
 ---
 
@@ -379,4 +499,4 @@ Se seu objetivo é previsão com alta acurácia, considere modelos mais sofistic
 
 ### Conclusão
 
-A regressão linear é uma excelente ferramenta para modelar tendências** e compreender relações entre variáveis, mas deve ser usada com cautela como modelo preditivo em contextos reais complexos.
+A regressão linear é uma excelente ferramenta para representar tendências e compreender relações entre variáveis, mas deve ser usada com cautela como modelo preditivo em contextos reais complexos.
