@@ -1,11 +1,9 @@
 ---
-title: "Regressão Linear"
+title: "Regressão Linear: Simples e Múltipla"
 author: Lucas Magalhães Ast
 format: html
 toc: true
 ---
-
-# Regressão Linear: Simples e Múltipla
 
 ## O que é Regressão Linear?
 
@@ -26,7 +24,7 @@ Modela a relação entre duas variáveis:
 ### Fórmula
 
 $$
-\hat{y} = \beta_0 + \beta_1 x
+\hat{y} = \beta_0 + \beta_1 x + \varepsilon
 $$
 
 - $\hat{y}$: valor previsto  
@@ -36,6 +34,12 @@ $$
 - $\varepsilon$: erro  
 
 ---
+
+## O que é o Intercepto ($\beta_0$)?
+
+O intercepto (também chamado de coeficiente linear, $\beta_0$ ou $a$ em alguns livros) é o valor de $y$ quando $x=0$, ou onde a reta cruza o eixo $y$.
+
+Ele dá a "altura de partida" da reta. Em alguns contextos, o intercepto tem interpretação prática (ex: salário inicial quando anos de experiência = 0).
 
 ## O que é o Coeficiente Angular ($\beta_1$)?
 
@@ -60,7 +64,7 @@ Em outras palavras:
 - O erro é o que sobra da parcela que $y$ que não pode ser prevista pelo modelo.
 - Inclui fatores aleatórias, ruído de medição, variáveis omitidas ou influências externas não capturadas pelo modelo.
 
-Se os dados seguintes exatamente a reta do modelo, o erro será zero. Em dados reais, os erros quase sempre são diferentes de zero, e a análise deles ajuda a avaliar o quão bom é o modelo.
+Se os dados seguem exatamente a reta do modelo, o erro será zero. Em dados reais, os erros quase sempre são diferentes de zero, e a análise deles ajuda a avaliar o quão bom é o modelo.
 
 O exemplo a seguir segue exatamente a reta do modelo e por isso o erro acaba sendo zero.
 
@@ -81,14 +85,16 @@ $$
 | 2 | 8 |
 
 - Intercepto $\beta_0 = 2$
+
 - Inclinação $\beta_1 = 3$
+
 ---
 
 ## Cálculo dos Coeficientes
 
 O método dos mínimos quadrados calcula os coeficientes que minimizam a soma dos quadrados dos erros.
 
-Fórmula fo coeficiente angular:
+Fórmula do coeficiente angular:
 $$
 \beta_1 = \frac{\sum (x_i - \bar{x})(y_i - \bar{y})}{\sum (x_i - \bar{x})^2}
 $$
@@ -466,11 +472,11 @@ Quando essas condições não são atendidas, a capacidade preditiva cai drastic
 
 ### Forma correta de interpretar
 
-- Evite dizer que:  
-  > “Regressão linear é um modelo sólido de previsão.”
+- Regressão linear é um método estatístico que estima a relação média entre uma variável resposta e uma ou mais variáveis explicativas.
 
-- Prefira dizer:  
-  > “A regressão linear é uma ferramenta útil para capturar a tendência média de uma variável resposta com base em variáveis explicativas, mas possui limitações como modelo preditivo, especialmente em cenários não-lineares ou com alta variabilidade.”
+- Embora útil para descrever tendências, possui limitações como modelo preditivo em cenários complexos ou não lineares.
+
+- Regressão linear é útil para descrever a tendência média de como $y$ varia em função de $x$ (ou de vários $x$, no caso múltiplo).
 
 ---
 
